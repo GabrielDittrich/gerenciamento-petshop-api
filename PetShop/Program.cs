@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+// Carregar variáveis de ambiente do arquivo .env
+using DotNetEnv;
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +22,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configuração banco MySQL
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+
 builder.Services.AddDbContext<BancoDeDados>(options =>
-    options.UseMySQL("server=localhost;port=3306;database=mysql;user=root;password=1234"));
+    options.UseMySQL(connectionString));
 
 var app = builder.Build();
 
