@@ -36,22 +36,52 @@ A API se comunica com um banco de dados MySQL e está integrada com um front-end
 # Instalação
 
 Clone o repositório:
-- git clone <URL do repositório>
-- cd <nome do repositório>
+```bash
+git clone https://github.com/GabrielDittrich/petshop-management-api.git
+cd petshop-management-api
+```
 
-## Restaure as dependências do projeto:
 ### Parte C#:
-Configure o banco de dados MySQL.<br>
-Crie um banco de dados mysql com o nome que preferir e configure a string de conexão no Program.cs com suas credenciais. <br>
+##Configure o banco de dados MySQL:
 
-Execute a aplicação:
-- dotnet run
+Crie um banco de dados MySQL com o nome que preferir.
 
+No arquivo Program.cs, substitua a string de conexão com os dados do seu banco (host, porta, nome do banco, usuário e senha).
+
+Crie um banco de dados MySQL com o nome que preferir.
+
+Crie um arquivo com o nome .env na pasta PetShop com a variável de ambiente DB_CONNECTION para a string de conexão, exemplo:
+
+```bash
+DB_CONNECTION="server=localhost;port=3306;database=mydbname;user=user;password=pass"
+```
+
+No arquivo .env de exemplo, substitua na string de conexão, os dados do seu banco (host, porta, nome do banco, usuário e senha).
+
+## Aplicar migrations existentes:
+
+```bash
+cd PetShop
+
+dotnet tool install --global dotnet-ef
+
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+dotnet ef database update
+```
+
+## Executar a aplicação:
+```bash
+dotnet run
+```
 ### Parte React:
-- npm install
-
+```bash
+npm install
+```
 Execute a aplicação:
-- npm start
+```bash
+npm start
+```
 Acesse a documentação da API pelo Swagger em http://localhost:xxxx/swagger/index.html.
 
 # Endpoints
