@@ -6,7 +6,14 @@ public class BancoDeDados : DbContext
     {
     }
 
-    public DbSet<Animal> Animais { get; set; }
-    public DbSet<Produto> Produtos { get; set; }
-    public DbSet<Pessoa> Pessoas { get; set; }
+    public DbSet<Produto> Produtos => Set<Produto>();
+    public DbSet<Pessoa> Pessoas => Set<Pessoa>();
+    public DbSet<Animal> Animais => Set<Animal>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Produto>()
+            .Property(p => p.Preco)
+            .HasColumnType("decimal(10,2)");
+    }
 }

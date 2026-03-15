@@ -1,4 +1,4 @@
-use mysql;
+use petshopdb;
 
 SELECT * FROM animais;
 

@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace PetShop.Migrations
 {
     /// <inheritdoc />
-    public partial class VersaoAlterada : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,8 @@ namespace PetShop.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     NomeAnimal = table.Column<string>(type: "longtext", nullable: true),
-                    Raca = table.Column<string>(type: "longtext", nullable: true)
+                    Raca = table.Column<string>(type: "longtext", nullable: true),
+                    Porte = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,7 +53,8 @@ namespace PetShop.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     NomeProduto = table.Column<string>(type: "longtext", nullable: true),
-                    Descricao = table.Column<string>(type: "longtext", nullable: true)
+                    Descricao = table.Column<string>(type: "longtext", nullable: true),
+                    Preco = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {

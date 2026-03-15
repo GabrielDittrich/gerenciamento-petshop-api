@@ -1,17 +1,15 @@
 import Header from "./Header";
 import Nav from "./Nav";
-import Aside from "./Aside";
 import Footer from "./Footer";
 
 function Layout(props) {
     return (
-        <>
+        <div className="app-shell">
             <Header />
             <Nav />
-            {/* <Aside /> */}
-            <main>{props.children}</main>
+            <main className="app-main">{props.children}</main>
             <Footer />
-        </>
+        </div>
     );
 }
 

@@ -7,6 +7,7 @@ import Cadastros from "./paginas/Cadastros";
 function App() {
     return (
         <>
+        
             <Routes>
                 <Route path="/" element={<Layout><Home /></Layout>} />
 

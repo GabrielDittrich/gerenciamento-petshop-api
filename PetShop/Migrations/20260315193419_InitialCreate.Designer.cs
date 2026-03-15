@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PetShop.Migrations
 {
     [DbContext(typeof(BancoDeDados))]
-    [Migration("20240429161821_CriarTabelaPessoas")]
-    partial class CriarTabelaPessoas
+    [Migration("20260315193419_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Animal", b =>
@@ -27,6 +27,9 @@ namespace PetShop.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NomeAnimal")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Porte")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Raca")
@@ -68,6 +71,9 @@ namespace PetShop.Migrations
 
                     b.Property<string>("NomeProduto")
                         .HasColumnType("longtext");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 

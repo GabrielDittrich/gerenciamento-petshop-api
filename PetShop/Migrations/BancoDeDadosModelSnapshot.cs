@@ -69,8 +69,8 @@ namespace PetShop.Migrations
                     b.Property<string>("NomeProduto")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Preco")
-                        .HasColumnType("longtext");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 

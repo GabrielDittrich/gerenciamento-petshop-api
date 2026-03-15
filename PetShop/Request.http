@@ -27,16 +27,16 @@ Content-Type: application/json
     "Raca" : "Pit-bul",
     "Porte" : "Grande"
 }
-    
+
 
 ### Requisição DELETE
 DELETE  http://localhost:5119/animais/1
 
 
-// ****** PESSOAS *****        
+// ****** PESSOAS *****
 
 ### Requisição GET
-GET http://localhost:5119/pessoas 
+GET http://localhost:5119/pessoas
 Content-Type: application/json
 
 {
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 
 ### Requisição POST
-POST http://localhost:5119/pessoas 
+POST http://localhost:5119/pessoas
 Content-Type: application/json
 
 {
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Requisição PUT
-PUT http://localhost:5119/pessoas/2 
+PUT http://localhost:5119/pessoas/2
 Content-Type: application/json
 
 {
@@ -70,10 +70,10 @@ DELETE  http://localhost:5119/pessoas/1
 
 
 
-// ****** PRODUTOS ****** 
+// ****** PRODUTOS ******
 
 ### Requisição GET
-GET http://localhost:5119/produtos 
+GET http://localhost:5119/produtos
 Content-Type: application/json
 
 {
@@ -83,12 +83,13 @@ Content-Type: application/json
 }
 
 ### POST
-POST http://localhost:5119/produtos 
+POST http://localhost:5119/produtos
 Content-Type: application/json
 
 {
-    "NomeProduto": "Macarrão",
-    "Descricao": "Macarrão de Parafuso"
+  "nomeProduto": "Shampoo antialergico",
+  "descricao": "Hidratacao para peles sensiveis",
+  "preco": 9.99
 }
 
 ### PUT

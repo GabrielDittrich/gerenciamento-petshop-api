@@ -16,13 +16,19 @@ public static class ProdutosApi
 
         group.MapPost("/", async (Produto produto, BancoDeDados db) =>
         {
+            Console.WriteLine($"ANTES DE SALVAR: {produto.Preco}");
+
             db.Produtos.Add(produto);
-            //insert into...
             await db.SaveChangesAsync();
 
-            return Results.Created($"/produtos/{produto.Id}", produto);
-        }
-        );
+            var produtoSalvo = await db.Produtos
+                .AsNoTracking()
+                .FirstAsync(p => p.Id == produto.Id);
+
+            Console.WriteLine($"DEPOIS DE SALVAR E RELER: {produtoSalvo.Preco}");
+
+            return Results.Created($"/produtos/{produto.Id}", produtoSalvo);
+        });
 
         group.MapPut("/{id}", async (int id, Produto produtoAlterada, BancoDeDados db) =>
         {
@@ -35,7 +41,7 @@ public static class ProdutosApi
             produto.NomeProduto = produtoAlterada.NomeProduto;
             produto.Descricao = produtoAlterada.Descricao;
             produto.Preco = produtoAlterada.Preco;
-            
+
             //update....
             await db.SaveChangesAsync();
 
