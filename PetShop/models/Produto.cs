@@ -4,5 +4,5 @@ public class Produto
     public string? NomeProduto { get; set; }
     public string? Descricao { get; set; }
 
-    public string? Preco { get; set; }
+    public decimal Preco { get; set; }
 }

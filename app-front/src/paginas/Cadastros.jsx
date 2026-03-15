@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function Cadastros() {
+    const apiBaseUrl = process.env.REACT_APP_API_URL ?? "http://localhost:5119";
 
     const [pessoa, setPessoa] = useState(null);
     const [animal, setAnimal] = useState(null);
@@ -12,21 +13,21 @@ function Cadastros() {
     const [produtos, setProdutos] = useState([]);
 
     function getClientes() {
-        axios.get("http://localhost:5119/pessoas")
+        axios.get(`${apiBaseUrl}/pessoas`)
             .then((resposta) => {
                 setClientes(resposta.data);
             });
     }
 
     function getAnimais() {
-        axios.get("http://localhost:5119/animais")
+        axios.get(`${apiBaseUrl}/animais`)
             .then((resposta) => {
                 setAnimais(resposta.data);
             });
     }
 
     function getProdutos() {
-        axios.get("http://localhost:5119/produtos")
+        axios.get(`${apiBaseUrl}/produtos`)
             .then((resposta) => {
                 setProdutos(resposta.data);
             });
@@ -101,36 +102,36 @@ function Cadastros() {
     function salvarCadastro(tipo) {
         if (tipo === "cliente") {
             if (pessoa.id) {
-                axios.put("http://localhost:5119/pessoas/" + pessoa.id, pessoa)
+                axios.put(`${apiBaseUrl}/pessoas/${pessoa.id}`, pessoa)
                     .then(() => {
                         refresh();
                     });
             } else {
-                axios.post("http://localhost:5119/pessoas", pessoa)
+                axios.post(`${apiBaseUrl}/pessoas`, pessoa)
                     .then(() => {
                         refresh();
                     });
             }
         } else if (tipo === "animal") {
             if (animal.id) {
-                axios.put("http://localhost:5119/animais/" + animal.id, animal)
+                axios.put(`${apiBaseUrl}/animais/${animal.id}`, animal)
                     .then(() => {
                         refresh();
                     });
             } else {
-                axios.post("http://localhost:5119/animais", animal)
+                axios.post(`${apiBaseUrl}/animais`, animal)
                     .then(() => {
                         refresh();
                     });
             }
         } else if (tipo === "produto") {
             if (produto.id) {
-                axios.put("http://localhost:5119/produtos/" + produto.id, produto)
+                axios.put(`${apiBaseUrl}/produtos/${produto.id}`, produto)
                     .then(() => {
                         refresh();
                     });
             } else {
-                axios.post("http://localhost:5119/produtos", produto)
+                axios.post(`${apiBaseUrl}/produtos`, produto)
                     .then(() => {
                         refresh();
                     });
@@ -179,7 +180,7 @@ function Cadastros() {
                     />
                     <label htmlFor="raca">Raca</label>
                     <input type="text" id="raca" name="raca"
-                        value={animal.especie}
+                        value={animal.raca}
                         onChange={(e) => {
                             onChangeCadastro(e.target.name, e.target.value, "animal");
                         }}
@@ -200,19 +201,19 @@ function Cadastros() {
                 <form>
                     <label htmlFor="nomeProduto">Nome</label>
                     <input type="text" id="nomeProduto" name="nomeProduto"
-                        value={produto.nome}
+                        value={produto.nomeProduto}
                         onChange={(e) => {
                             onChangeCadastro(e.target.name, e.target.value, "produto");
                         }}
                     />
-                    <label htmlFor="descricao">Descrição</label>
+                    <label htmlFor="descricao">Descricao</label>
                     <input type="text" id="descricao" name="descricao"
                         value={produto.descricao}
                         onChange={(e) => {
                             onChangeCadastro(e.target.name, e.target.value, "produto");
                         }}
                     />
-                        <label htmlFor="preco">Preço</label>
+                        <label htmlFor="preco">Preco</label>
                         <input type="text" id="preco" name="preco"
                             value={produto.preco}
                             onChange={(e) => {
@@ -228,19 +229,19 @@ function Cadastros() {
 
     function excluirCadastro(id, tipo) {
         if (tipo === "cliente") {
-            axios.delete("http://localhost:5119/pessoas/" + id).then(
+            axios.delete(`${apiBaseUrl}/pessoas/${id}`).then(
                 () => {
                     getClientes();
                 }
             );
         } else if (tipo === "animal") {
-            axios.delete("http://localhost:5119/animais/" + id).then(
+            axios.delete(`${apiBaseUrl}/animais/${id}`).then(
                 () => {
                     getAnimais();
                 }
             );
         } else if (tipo === "produto") {
-            axios.delete("http://localhost:5119/produtos/" + id).then(
+            axios.delete(`${apiBaseUrl}/produtos/${id}`).then(
                 () => {
                     getProdutos();
                 }
@@ -313,7 +314,7 @@ function Cadastros() {
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th>Ações</th>
+                        <th>Acoes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -331,7 +332,7 @@ function Cadastros() {
                         <th>Nome</th>
                         <th>Raca</th>
                         <th>Porte</th>
-                        <th>Ações</th>
+                        <th>Acoes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -347,9 +348,9 @@ function Cadastros() {
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                        <th>Ações</th>
+                        <th>Descricao</th>
+                        <th>Preco</th>
+                        <th>Acoes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -361,3 +362,4 @@ function Cadastros() {
 }
 
 export default Cadastros;
+
