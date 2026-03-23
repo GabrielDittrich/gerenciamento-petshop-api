@@ -4,7 +4,7 @@ Repositorio com backend em ASP.NET Core e frontend em React para um sistema de g
 
 ## Estrutura do repositorio
 
-- `PetShop/`: backend .NET 8 da solucao `PetShopManagement.Api` com Entity Framework Core e MySQL
+- `PetShopManagement/`: backend .NET 8 da solucao `PetShopManagement.Api` com Entity Framework Core e MySQL
 - `app-front/`: aplicacao React que consome a API
 
 ## Tecnologias
