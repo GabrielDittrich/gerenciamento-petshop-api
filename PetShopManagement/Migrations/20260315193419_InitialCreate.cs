@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace PetShop.Migrations
+namespace PetShopManagement.Api.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

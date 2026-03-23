@@ -1,6 +1,6 @@
-# PetShop Backend
+# Pet Shop Management API
 
-Esta pasta contem a API ASP.NET Core do projeto de gerenciamento de petshop.
+Esta pasta contem a API ASP.NET Core do sistema Pet Shop Management.
 
 ## Estrutura
 
@@ -14,7 +14,7 @@ Esta pasta contem a API ASP.NET Core do projeto de gerenciamento de petshop.
 
 - .NET SDK 8
 - MySQL 8 ou compativel
-- Docker opcional para subir banco + API com um comando
+- Docker opcional para subir banco e API com um comando
 
 ## Configuracao local
 

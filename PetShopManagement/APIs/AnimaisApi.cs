@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-public static class PetShopApi
+public static class AnimaisApi
 {
-    public static void MapPetShopApi(this WebApplication app)
+    public static void MapAnimaisApi(this WebApplication app)
     {
         var group = app.MapGroup("/animais");
 

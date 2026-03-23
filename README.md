@@ -1,10 +1,10 @@
-# Gerenciamento PetShop
+# Pet Shop Management System
 
-Repositorio com backend em ASP.NET Core e frontend em React para um sistema de gerenciamento de petshop.
+Repositorio com backend em ASP.NET Core e frontend em React para um sistema de gerenciamento de pet shop.
 
 ## Estrutura do repositorio
 
-- `PetShop/`: API .NET 8 com Entity Framework Core e MySQL
+- `PetShop/`: backend .NET 8 da solucao `PetShopManagement.Api` com Entity Framework Core e MySQL
 - `app-front/`: aplicacao React que consome a API
 
 ## Tecnologias

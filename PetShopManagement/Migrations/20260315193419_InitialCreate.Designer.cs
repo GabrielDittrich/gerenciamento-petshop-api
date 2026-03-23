@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace PetShop.Migrations
+namespace PetShopManagement.Api.Migrations
 {
     [DbContext(typeof(BancoDeDados))]
     [Migration("20260315193419_InitialCreate")]

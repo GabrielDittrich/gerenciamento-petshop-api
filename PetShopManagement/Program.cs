@@ -55,10 +55,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "PetShop");
+app.MapGet("/", () => "PetShopManagement.Api");
 
 app.MapPessoasApi();
-app.MapPetShopApi();
+app.MapAnimaisApi();
 app.MapProdutosApi();
 
 app.Run();

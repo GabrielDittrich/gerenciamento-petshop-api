@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace PetShop.Migrations
+namespace PetShopManagement.Api.Migrations
 {
     [DbContext(typeof(BancoDeDados))]
     partial class BancoDeDadosModelSnapshot : ModelSnapshot
