@@ -3,14 +3,14 @@ services:
     image: mysql:8.4
     container_name: petshop-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: PetShopDev123!
       MYSQL_DATABASE: petshopdb
     ports:
       - "3306:3306"
     volumes:
       - petshop_mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pPetShopDev123!"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -26,7 +26,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: server=db;port=3306;database=petshopdb;user=root;password=root
+      ConnectionStrings__DefaultConnection: server=db;port=3306;database=petshopdb;user=root;password=PetShopDev123!
       Cors__AllowedOrigins__0: http://localhost:3000
     ports:
       - "5119:8080"

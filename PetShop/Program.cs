@@ -9,7 +9,6 @@ if (File.Exists(envPath))
 }
 
 var builder = WebApplication.CreateBuilder(args);
-
 var allowedOrigins = builder.Configuration
     .GetSection("Cors:AllowedOrigins")
     .Get<string[]>() ?? ["http://localhost:3000"];

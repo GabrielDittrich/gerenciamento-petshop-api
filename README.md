@@ -55,7 +55,7 @@ Voce tambem pode usar `appsettings.Development.json` ou a variavel `ConnectionSt
 Exemplo de conexao:
 
 ```bash
-DB_CONNECTION="server=localhost;port=3306;database=petshopdb;user=root;password=senha"
+DB_CONNECTION="server=localhost;port=3306;database=petshopdb;user=root;password=PetShopDev123!"
 ```
 
 Aplicar migracoes e executar:
