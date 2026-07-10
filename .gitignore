@@ -65,6 +65,13 @@ artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+# React
+**/node_modules/
+**/build/
+
+*.env
+!*.env.example
+
 # StyleCop
 StyleCopReport.xml
 
