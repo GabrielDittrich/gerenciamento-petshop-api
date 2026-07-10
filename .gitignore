@@ -57,6 +57,18 @@ dlldata.c
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
+# .NET
+**/bin/
+**/obj/
+
+# React
+**/node_modules/
+**/build/
+
+# Environment
+*.env
+!*.env.example
+
 # .NET Core
 project.lock.json
 project.fragment.lock.json
