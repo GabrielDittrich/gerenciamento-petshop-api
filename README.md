@@ -4,15 +4,16 @@ Sistema full stack para gerenciamento de petshop, desenvolvido com backend em AS
 
 O projeto permite cadastrar e listar pessoas, animais e produtos, utilizando uma API REST com Entity Framework Core, MySQL e integração com uma interface web em React.
 
-## Funcionalidades atuais
+## Funcionalidades
 
-- Cadastro e listagem de animais
 - Cadastro e listagem de pessoas
+- Cadastro e listagem de animais
 - Cadastro e listagem de produtos
-- Documentação da API com Swagger
 - Comunicação entre frontend React e backend .NET
-- Teste de endpoints com arquivo `Request.http`
+- Documentação da API com Swagger
+- Persistência de dados com MySQL
 - Configuração com Docker Compose
+- Arquivo `Request.http` para testar endpoints da API pelo VS Code
 
 ## Tecnologias utilizadas
 
@@ -27,7 +28,7 @@ O projeto permite cadastrar e listar pessoas, animais e produtos, utilizando uma
 
 ### Frontend
 
-- React 18
+- React
 - React Router
 - Axios
 - JavaScript
@@ -42,7 +43,15 @@ O projeto permite cadastrar e listar pessoas, animais e produtos, utilizando uma
 
 ```text
 gerenciamento-petshop-api
-├── backend
+├── app-front
+│   ├── public
+│   ├── src
+│   │   ├── imagens
+│   │   ├── layout
+│   │   └── paginas
+│   ├── package.json
+│   └── README.md
+├── PetShopManagement
 │   ├── APIs
 │   ├── Migrations
 │   ├── models
@@ -55,14 +64,6 @@ gerenciamento-petshop-api
 │   ├── appsettings.Development.json
 │   ├── .env.example
 │   └── PetShopManagement.Api.csproj
-├── app-front
-│   ├── public
-│   ├── src
-│   │   ├── imagens
-│   │   ├── layout
-│   │   └── paginas
-│   ├── package.json
-│   └── README.md
 ├── docker-compose.yml
 ├── README.md
 ├── .gitignore
@@ -77,7 +78,7 @@ Antes de começar, é necessário ter instalado:
 - Node.js 18 ou superior
 - MySQL 8 ou compatível
 - Git
-- Docker, caso queira executar com Docker Compose
+- Docker Desktop ou Docker Engine, caso utilize Docker
 - Entity Framework CLI
 
 Caso não tenha o Entity Framework CLI instalado, execute:
@@ -95,7 +96,7 @@ cd gerenciamento-petshop-api
 
 ## Executando com Docker Compose
 
-Para subir o banco MySQL e o backend com Docker, execute:
+Para subir o banco de dados e o backend com Docker, execute:
 
 ```bash
 docker compose up --build
@@ -122,10 +123,10 @@ localhost:3306
 1. Acesse a pasta do backend:
 
 ```bash
-cd backend
+cd PetShopManagement
 ```
 
-2. Crie o arquivo de ambiente:
+2. Crie o arquivo de configuração de ambiente:
 
 ```bash
 cp .env.example conexao.env
@@ -137,7 +138,7 @@ No Windows, use:
 copy .env.example conexao.env
 ```
 
-3. Configure a conexão no arquivo `conexao.env`:
+3. Configure a string de conexão no arquivo `conexao.env`:
 
 ```env
 DB_CONNECTION=server=localhost;port=3306;database=petshopdb;user=root;password=sua_senha
@@ -221,10 +222,10 @@ http://localhost:3000
 
 ## Testando a API
 
-Além do Swagger, o projeto possui um arquivo `Request.http` com exemplos de requisições para testar os endpoints diretamente pelo VS Code.
+Além do Swagger, o projeto possui um arquivo `Request.http` com exemplos de requisições para testar os endpoints da API diretamente pelo VS Code.
 
 ```text
-backend/Request.http
+PetShopManagement/Request.http
 ```
 
 Esse arquivo pode ser usado com a extensão **REST Client**.
@@ -236,7 +237,7 @@ Com a API em execução, basta abrir o arquivo `Request.http` e enviar as requis
 O projeto também possui READMEs específicos para cada parte da aplicação:
 
 ```text
-backend/README.md
+PetShopManagement/README.md
 app-front/README.md
 ```
 
@@ -248,4 +249,4 @@ O ideal é manter apenas o arquivo `.env.example` no repositório, com valores d
 
 ## Objetivo do projeto
 
-Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando MySQL, Entity Framework Core, Swagger e Docker Compose.
+Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando banco de dados MySQL, Entity Framework Core, Swagger e Docker Compose.
