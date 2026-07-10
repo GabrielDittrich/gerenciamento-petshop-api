@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: PetShopDev123!
       MYSQL_DATABASE: petshopdb
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - petshop_mysql_data:/var/lib/mysql
     healthcheck:
@@ -17,7 +17,7 @@ services:
 
   api:
     build:
-      context: ./PetShop
+      context: ./backend
       dockerfile: Dockerfile
     container_name: petshop-api
     depends_on:
