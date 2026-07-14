@@ -11,23 +11,22 @@ function Home() {
           <p className="eyebrow">Apresentacao do projeto</p>
           <h2>Gestão simples e organizada para clientes, pets e produtos</h2>
           <p>
-            A ideia aqui e sair da sensacao de CRUD solto e mostrar um produto
-            mais confiavel: navegacao limpa, leitura facil e uma estrutura
-            visual que ajuda qualquer pessoa a entender rapidamente o que o
-            projeto resolve.
+            Sistema para organizar clientes, animais e produtos em uma única
+            interface, com API .NET, banco MySQL e frontend em React.
           </p>
 
           <div className="hero-actions">
-            <Link className="hero-button-primary" to="/cadastros">
-              Abrir area de operacao
+            <Link className="hero-button hero-button-primary" to="/cadastros">
+              Abrir área de operação
             </Link>
+
             <a
-              className="hero-button-secondary"
+              className="hero-button hero-button-secondary"
               href="https://www.instagram.com/animaissemteto/"
               target="_blank"
               rel="noreferrer"
             >
-              Ver parceria
+              Conhecer causa animal
             </a>
           </div>
 
