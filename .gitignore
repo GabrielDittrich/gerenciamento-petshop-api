@@ -286,6 +286,9 @@ ServiceFabricBackup/
 *.ldf
 *.ndf
 
+# IDE/session files
+*.session*
+
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
