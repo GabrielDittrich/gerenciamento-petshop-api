@@ -44,7 +44,64 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<BancoDeDados>();
+
     db.Database.Migrate();
+
+    if (!db.Pessoas.Any())
+    {
+        db.Pessoas.AddRange(
+            new Pessoa
+            {
+                Nome = "Maria Oliveira",
+                Telefone = "41999990000",
+                Email = "maria@email.com"
+            },
+            new Pessoa
+            {
+                Nome = "João Santos",
+                Telefone = "41988880000",
+                Email = "joao@email.com"
+            }
+        );
+    }
+
+    if (!db.Animais.Any())
+    {
+        db.Animais.AddRange(
+            new Animal
+            {
+                NomeAnimal = "Belinha",
+                Raca = "Pinscher",
+                Porte = "Pequeno"
+            },
+            new Animal
+            {
+                NomeAnimal = "Thor",
+                Raca = "Golden Retriever",
+                Porte = "Grande"
+            }
+        );
+    }
+
+    if (!db.Produtos.Any())
+    {
+        db.Produtos.AddRange(
+            new Produto
+            {
+                NomeProduto = "Shampoo Antialérgico",
+                Descricao = "Produto para peles sensíveis",
+                Preco = 29.90m
+            },
+            new Produto
+            {
+                NomeProduto = "Ração Premium",
+                Descricao = "Ração para cães adultos",
+                Preco = 119.90m
+            }
+        );
+    }
+
+    db.SaveChanges();
 }
 
 app.UseCors("AllowSpecificOrigin");
