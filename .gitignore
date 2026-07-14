@@ -57,6 +57,9 @@ dlldata.c
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
+.vscode/
+**/.vscode/
+
 # .NET
 **/bin/
 **/obj/
