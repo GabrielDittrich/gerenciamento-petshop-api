@@ -2,17 +2,18 @@
 
 Sistema full stack para gerenciamento de petshop, desenvolvido com backend em ASP.NET Core e frontend em React.
 
-O projeto permite cadastrar e listar pessoas, animais e produtos, utilizando uma API REST com Entity Framework Core, MySQL e integração com uma interface web em React.
+O projeto permite cadastrar e listar pessoas/clientes, animais e produtos, utilizando uma API REST com Entity Framework Core, MySQL e integração com uma interface web em React.
 
 ## Funcionalidades
 
-- Cadastro e listagem de pessoas
+- Cadastro e listagem de pessoas/clientes
 - Cadastro e listagem de animais
 - Cadastro e listagem de produtos
 - Comunicação entre frontend React e backend .NET
 - Documentação da API com Swagger
 - Persistência de dados com MySQL
 - Configuração com Docker Compose
+- Dados iniciais para demonstração
 - Arquivo `Request.http` para testar endpoints da API pelo VS Code
 
 ## Tecnologias utilizadas
@@ -50,8 +51,9 @@ gerenciamento-petshop-api
 │   │   ├── layout
 │   │   └── paginas
 │   ├── package.json
+│   ├── package-lock.json
 │   └── README.md
-├── PetShopManagement
+├── backend
 │   ├── APIs
 │   ├── Migrations
 │   ├── models
@@ -76,10 +78,9 @@ Antes de começar, é necessário ter instalado:
 
 - .NET SDK 8
 - Node.js 18 ou superior
-- MySQL 8 ou compatível
 - Git
-- Docker Desktop ou Docker Engine, caso utilize Docker
-- Entity Framework CLI
+- Docker Desktop ou Docker Engine
+- Entity Framework CLI, caso execute o backend localmente fora do Docker
 
 Caso não tenha o Entity Framework CLI instalado, execute:
 
@@ -96,7 +97,7 @@ cd gerenciamento-petshop-api
 
 ## Executando com Docker Compose
 
-Para subir o banco de dados e o backend com Docker, execute:
+Para subir o banco MySQL e o backend com Docker, execute:
 
 ```bash
 docker compose up --build
@@ -108,61 +109,65 @@ A API ficará disponível em:
 http://localhost:5119
 ```
 
-O banco MySQL ficará disponível em:
+O Swagger ficará disponível em:
 
 ```text
-localhost:3306
+http://localhost:5119/swagger
 ```
 
-> As portas podem variar conforme a configuração do `docker-compose.yml`.
+O banco MySQL ficará exposto localmente em:
 
-## Executando sem Docker
+```text
+localhost:3307
+```
 
-### Backend
+> Dentro do Docker, a API acessa o banco pelo serviço `db` na porta interna `3306`.
 
-1. Acesse a pasta do backend:
+## Executando o backend sem Docker
+
+Para rodar o backend localmente, mantenha apenas o banco MySQL rodando pelo Docker:
 
 ```bash
-cd PetShopManagement
+docker compose up -d db
 ```
 
-2. Crie o arquivo de configuração de ambiente:
+Depois acesse a pasta do backend:
+
+```bash
+cd backend
+```
+
+Crie o arquivo de configuração de ambiente:
 
 ```bash
 cp .env.example conexao.env
 ```
 
-No Windows, use:
+No Windows:
 
 ```bash
 copy .env.example conexao.env
 ```
 
-3. Configure a string de conexão no arquivo `conexao.env`:
+Configure a string de conexão no arquivo `conexao.env`:
 
 ```env
-DB_CONNECTION=server=localhost;port=3306;database=petshopdb;user=root;password=sua_senha
+DB_CONNECTION=server=localhost;port=3307;database=petshopdb;user=root;password=sua_senha
 ```
 
-Também é possível configurar a conexão pelo `appsettings.Development.json` ou pela variável de ambiente:
-
-```text
-ConnectionStrings__DefaultConnection
-```
-
-4. Restaure as dependências:
+Restaure as dependências:
 
 ```bash
 dotnet restore
 ```
 
-5. Aplique as migrations:
+Aplique as migrations:
 
 ```bash
 dotnet ef database update
 ```
 
-6. Execute a API:
+Execute a API:
 
 ```bash
 dotnet run
@@ -174,41 +179,35 @@ A documentação da API ficará disponível no Swagger:
 http://localhost:5119/swagger
 ```
 
-ou:
-
-```text
-https://localhost:7081/swagger
-```
-
 > A porta pode variar conforme a configuração local do projeto.
 
-## Frontend
+## Executando o frontend
 
-1. Acesse a pasta do frontend:
+Acesse a pasta do frontend:
 
 ```bash
 cd app-front
 ```
 
-2. Crie o arquivo de ambiente:
+Crie o arquivo de ambiente:
 
 ```bash
 cp .env.example .env
 ```
 
-No Windows, use:
+No Windows:
 
 ```bash
 copy .env.example .env
 ```
 
-3. Instale as dependências:
+Instale as dependências:
 
 ```bash
 npm install
 ```
 
-4. Execute o frontend:
+Execute o frontend:
 
 ```bash
 npm start
@@ -225,22 +224,34 @@ http://localhost:3000
 Além do Swagger, o projeto possui um arquivo `Request.http` com exemplos de requisições para testar os endpoints da API diretamente pelo VS Code.
 
 ```text
-PetShopManagement/Request.http
+backend/Request.http
 ```
 
 Esse arquivo pode ser usado com a extensão **REST Client**.
 
 Com a API em execução, basta abrir o arquivo `Request.http` e enviar as requisições pelo próprio VS Code.
 
+## Dados de demonstração
+
+Ao iniciar a API, o sistema cria automaticamente alguns dados iniciais para facilitar testes e apresentação do projeto.
+
+Os dados incluem exemplos de pessoas/clientes, animais e produtos, permitindo visualizar a área operacional preenchida logo após executar o sistema.
+
 ## Documentação por pasta
 
 O projeto também possui READMEs específicos para cada parte da aplicação:
 
 ```text
-PetShopManagement/README.md
+backend/README.md
 app-front/README.md
 ```
 
+## Observações sobre arquivos de ambiente
+
+Arquivos como `conexao.env` e `.env` não devem ser versionados no GitHub, pois podem conter dados sensíveis, como usuário e senha do banco de dados.
+
+O ideal é manter apenas arquivos `.env.example` no repositório, com valores de exemplo.
+
 ## Objetivo do projeto
 
-Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando banco de dados MySQL, Entity Framework Core, Swagger e Docker Compose.
+Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando MySQL, Entity Framework Core, Swagger e Docker Compose.
