@@ -241,12 +241,6 @@ PetShopManagement/README.md
 app-front/README.md
 ```
 
-## Observações sobre arquivos de ambiente
-
-O arquivo `conexao.env` não deve ser versionado no GitHub, pois pode conter dados sensíveis, como usuário e senha do banco de dados.
-
-O ideal é manter apenas o arquivo `.env.example` no repositório, com valores de exemplo.
-
 ## Objetivo do projeto
 
 Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando banco de dados MySQL, Entity Framework Core, Swagger e Docker Compose.
