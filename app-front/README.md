@@ -1,17 +1,54 @@
-# App Front
+# PetShop Manager Frontend
 
-Esta pasta contem o frontend React do projeto.
+Frontend em React do sistema de gerenciamento de petshop.
 
-## Requisitos
+## Funcionalidades
 
-- Node.js 18 ou superior
-- npm
+- Tela inicial de apresentação do projeto
+- Área operacional para pessoas/clientes, animais e produtos
+- Listagem de registros vindos da API
+- Formulários de cadastro
+- Integração com API ASP.NET Core
+- Interface organizada para apresentação em portfólio
 
-## Configuracao
+## Tecnologias utilizadas
 
-Por padrao, o frontend consome a API em `http://localhost:5119`.
+- React
+- React Router
+- Axios
+- JavaScript
+- CSS
 
-Se quiser alterar essa URL, copie `.env.example` para `.env`:
+## Estrutura
+
+```text
+app-front
+├── public
+├── src
+│   ├── imagens
+│   ├── layout
+│   └── paginas
+├── .env.example
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+## Configuração
+
+Por padrão, o frontend consome a API em:
+
+```text
+http://localhost:5119
+```
+
+Para alterar essa URL, copie `.env.example` para `.env`:
+
+```bash
+cp .env.example .env
+```
+
+No Windows:
 
 ```bash
 copy .env.example .env
@@ -19,11 +56,11 @@ copy .env.example .env
 
 Exemplo:
 
-```bash
+```env
 REACT_APP_API_URL=http://localhost:5119
 ```
 
-## Instalar dependencias
+## Instalar dependências
 
 ```bash
 npm install
@@ -35,14 +72,21 @@ npm install
 npm start
 ```
 
-## Build de producao
+O frontend será iniciado em:
+
+```text
+http://localhost:3000
+```
+
+## Gerar build de produção
 
 ```bash
 npm run build
 ```
 
-## Estrutura
+> A pasta `build` é gerada automaticamente e não deve ser versionada no GitHub.
 
-- `src/layout/`: componentes de layout
-- `src/paginas/`: paginas da aplicacao
-- `public/`: arquivos publicos
+## Observações
+
+- O backend precisa estar em execução para que os dados sejam carregados corretamente.
+- Caso apareça erro ao carregar os dados, verifique se a API está ativa em `http://localhost:5119`.
