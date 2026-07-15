@@ -1,16 +1,35 @@
-# Pet Shop Management API
+# PetShop Management API
 
-Esta pasta contém a API ASP.NET Core do sistema de gerenciamento de petshop.
+API ASP.NET Core do sistema de gerenciamento de petshop.
+
+## Funcionalidades
+
+- Cadastro e listagem de pessoas/clientes
+- Cadastro e listagem de animais
+- Cadastro e listagem de produtos
+- Persistência de dados com MySQL
+- Migrations com Entity Framework Core
+- Documentação com Swagger
+- Dados iniciais para demonstração
+- Testes manuais com `Request.http`
 
 ## Estrutura
 
-- `APIs/`: endpoints da API em Minimal API
-- `models/`: entidades usadas pelo Entity Framework Core
-- `Migrations/`: histórico de migrations do banco
-- `Properties/`: configurações de execução local
-- `Request.http`: exemplos de chamadas HTTP para teste manual
-- `BancoDeDados.cs`: contexto do Entity Framework Core
-- `Program.cs`: configuração da aplicação e dos serviços
+```text
+backend
+├── APIs
+├── Migrations
+├── models
+├── Properties
+├── BancoDeDados.cs
+├── Program.cs
+├── Dockerfile
+├── Request.http
+├── appsettings.json
+├── appsettings.Development.json
+├── .env.example
+└── PetShopManagement.Api.csproj
+```
 
 ## Requisitos
 
@@ -27,10 +46,10 @@ Você pode configurar a conexão com o banco de três formas:
 2. Ajustando `ConnectionStrings:DefaultConnection` em `appsettings.Development.json`
 3. Definindo a variável de ambiente `ConnectionStrings__DefaultConnection`
 
-Exemplo de conexão no arquivo `conexao.env`:
+Exemplo de conexão local usando o MySQL do Docker exposto na porta `3307`:
 
 ```env
-DB_CONNECTION=server=localhost;port=3306;database=petshopdb;user=root;password=sua_senha
+DB_CONNECTION=server=localhost;port=3307;database=petshopdb;user=root;password=sua_senha
 ```
 
 ## Executar localmente
@@ -51,12 +70,11 @@ Swagger:
 
 ```text
 http://localhost:5119/swagger
-https://localhost:7081/swagger
 ```
 
 ## Testando endpoints
 
-O arquivo `Request.http` possui exemplos de requisições para testar animais, pessoas e produtos pelo VS Code com a extensão REST Client.
+O arquivo `Request.http` possui exemplos de requisições para testar animais, pessoas/clientes e produtos pelo VS Code com a extensão REST Client.
 
 ## Executar com Docker
 
@@ -72,8 +90,14 @@ A API ficará disponível em:
 http://localhost:5119
 ```
 
+## Dados de demonstração
+
+Ao iniciar a aplicação, a API aplica as migrations pendentes e cria alguns dados iniciais caso o banco esteja vazio.
+
+Isso facilita a visualização do sistema no frontend e ajuda na apresentação do projeto como portfólio.
+
 ## Observações
 
-- O `README.md` da raiz do repositório explica o projeto completo.
-- Ao iniciar, a API aplica automaticamente as migrations pendentes no banco, caso isso esteja configurado no `Program.cs`.
+- O `README.md` da raiz explica o projeto completo.
 - O arquivo `conexao.env` não deve ser enviado para o GitHub.
+- Ao usar Docker Compose, a API acessa o banco pelo serviço `db`.
