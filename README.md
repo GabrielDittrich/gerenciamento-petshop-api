@@ -245,13 +245,3 @@ O projeto também possui READMEs específicos para cada parte da aplicação:
 backend/README.md
 app-front/README.md
 ```
-
-## Observações sobre arquivos de ambiente
-
-Arquivos como `conexao.env` e `.env` não devem ser versionados no GitHub, pois podem conter dados sensíveis, como usuário e senha do banco de dados.
-
-O ideal é manter apenas arquivos `.env.example` no repositório, com valores de exemplo.
-
-## Objetivo do projeto
-
-Este projeto foi desenvolvido para praticar a criação de uma aplicação full stack, integrando uma API REST em C#/.NET com um frontend em React, utilizando MySQL, Entity Framework Core, Swagger e Docker Compose.
