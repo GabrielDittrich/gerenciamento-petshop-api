@@ -1,16 +1,25 @@
 services:
   db:
     image: mysql:8.4
-    container_name: petshop-db
+
     environment:
-      MYSQL_ROOT_PASSWORD: PetShopDev123!
-      MYSQL_DATABASE: petshopdb
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
     ports:
       - "3307:3306"
+
     volumes:
       - petshop_mysql_data:/var/lib/mysql
+
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pPetShopDev123!"]
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h localhost -uroot -p\"$${MYSQL_ROOT_PASSWORD}\" --silent"
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -19,15 +28,19 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: petshop-api
+
     depends_on:
       db:
         condition: service_healthy
+
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: server=db;port=3306;database=petshopdb;user=root;password=PetShopDev123!
+
+      ConnectionStrings__DefaultConnection: "server=db;port=3306;database=${MYSQL_DATABASE};user=${MYSQL_USER};password=${MYSQL_PASSWORD}"
+
       Cors__AllowedOrigins__0: http://localhost:3000
+
     ports:
       - "5119:8080"
 
