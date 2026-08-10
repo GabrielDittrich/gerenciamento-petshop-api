@@ -1,158 +1,380 @@
-# Gerenciamento Petshop
+# 🐾 Gerenciamento Petshop
 
-Sistema full stack para gerenciamento de petshop, desenvolvido com backend em ASP.NET Core e frontend em React.
+Sistema web full stack para gerenciamento de petshop, desenvolvido com **ASP.NET Core, React, Entity Framework Core e MySQL**.
 
-O projeto permite cadastrar e listar pessoas/clientes, animais e produtos, utilizando uma API REST com Entity Framework Core, MySQL e integração com uma interface web em React.
+A aplicação permite gerenciar clientes, animais e produtos por meio de uma **API REST integrada a uma interface web responsiva**, com persistência de dados em MySQL e ambiente de backend preparado com Docker.
 
-## Funcionalidades
+---
 
-- Cadastro e listagem de pessoas/clientes
-- Cadastro e listagem de animais
-- Cadastro e listagem de produtos
-- Comunicação entre frontend React e backend .NET
-- Documentação da API com Swagger
-- Persistência de dados com MySQL
-- Configuração com Docker Compose
-- Dados iniciais para demonstração
-- Arquivo `Request.http` para testar endpoints da API pelo VS Code
+## 📸 Demonstração
 
-## Tecnologias utilizadas
+### Visão geral
+
+![Tela inicial do Gerenciamento Petshop](docs/screenshots/tela-principal.png)
+
+### Sistema em funcionamento
+
+![Demonstração do Gerenciamento Petshop](docs/demo/gerenciamento-petshop.gif)
+
+---
+
+## 📋 Sobre o projeto
+
+O **Gerenciamento Petshop** foi desenvolvido para colocar em prática conceitos de desenvolvimento full stack através de uma aplicação que centraliza informações de clientes, animais e produtos.
+
+O sistema possui uma interface desenvolvida em **React**, responsável pela interação com o usuário, que se comunica através de requisições HTTP com uma **API REST em ASP.NET Core**.
+
+No backend, o **Entity Framework Core** realiza o acesso e a persistência dos dados em um banco **MySQL**.
+
+Além do desenvolvimento da aplicação, o projeto também utiliza **Docker Compose**, variáveis de ambiente e Swagger para facilitar a configuração, execução e documentação da API.
+
+---
+
+## ✨ Funcionalidades
+
+- 👤 Cadastro e visualização de clientes
+- 🐶 Cadastro e visualização de animais
+- 📦 Cadastro e visualização de produtos
+- 💰 Exibição e formatação de valores de produtos
+- 🔄 Integração entre frontend e API REST
+- 🗄️ Persistência dos dados em MySQL
+- 📱 Interface responsiva para diferentes tamanhos de tela
+- 📚 Documentação e testes dos endpoints através do Swagger
+
+---
+
+## 🛠️ Tecnologias utilizadas
 
 ### Backend
 
-- .NET 8
-- ASP.NET Core Minimal API
-- Entity Framework Core
-- MySQL
-- Swagger
-- Docker
+- **C#**
+- **.NET 8**
+- **ASP.NET Core**
+- **Entity Framework Core**
+- **MySQL**
+- **Swagger / OpenAPI**
 
 ### Frontend
 
-- React
-- React Router
-- Axios
-- JavaScript
-- CSS
+- **React**
+- **JavaScript**
+- **HTML**
+- **CSS**
+- **Axios**
 
-### Infraestrutura
+### Ambiente e ferramentas
 
-- Docker Compose
-- MySQL 8
+- **Docker**
+- **Docker Compose**
+- **Git**
+- **GitHub**
 
-## Estrutura do projeto
+---
 
-```text
-gerenciamento-petshop-api
-├── app-front
-│   ├── public
-│   ├── src
-│   │   ├── imagens
-│   │   ├── layout
-│   │   └── paginas
-│   ├── package.json
-│   ├── package-lock.json
-│   └── README.md
-├── backend
-│   ├── APIs
-│   ├── Migrations
-│   ├── models
-│   ├── Properties
-│   ├── BancoDeDados.cs
-│   ├── Program.cs
-│   ├── Dockerfile
-│   ├── Request.http
-│   ├── appsettings.json
-│   ├── appsettings.Development.json
-│   ├── .env.example
-│   └── PetShopManagement.Api.csproj
-├── docker-compose.yml
-├── README.md
-├── .gitignore
-└── .gitattributes
-```
+## 🏗️ Arquitetura da aplicação
 
-## Requisitos
-
-Antes de começar, é necessário ter instalado:
-
-- .NET SDK 8
-- Node.js 18 ou superior
-- Git
-- Docker Desktop ou Docker Engine
-- Entity Framework CLI, caso execute o backend localmente fora do Docker
-
-Caso não tenha o Entity Framework CLI instalado, execute:
-
-```bash
-dotnet tool install --global dotnet-ef
-```
-
-## Como clonar o projeto
-
-```bash
-git clone https://github.com/GabrielDittrich/gerenciamento-petshop-api.git
-cd gerenciamento-petshop-api
-```
-
-## Executando com Docker Compose
-
-Para subir o banco MySQL e o backend com Docker, execute:
-
-```bash
-docker compose up --build
-```
-
-A API ficará disponível em:
+A aplicação é dividida em três componentes principais:
 
 ```text
-http://localhost:5119
+┌─────────────────────┐
+│        React        │
+│      Frontend       │
+└─────────┬───────────┘
+          │
+          │ HTTP / REST
+          ▼
+┌─────────────────────┐
+│   ASP.NET Core API  │
+│       Backend       │
+└─────────┬───────────┘
+          │
+          │ Entity Framework Core
+          ▼
+┌─────────────────────┐
+│        MySQL        │
+│   Banco de dados    │
+└─────────────────────┘
 ```
 
-O Swagger ficará disponível em:
+O frontend realiza requisições HTTP para a API ASP.NET Core.
+
+A API é responsável pelo processamento das requisições e pelo acesso ao banco de dados através do **Entity Framework Core**.
+
+---
+
+## 🔗 API REST
+
+O backend disponibiliza uma API REST responsável pelas operações relacionadas a:
+
+- Clientes
+- Animais
+- Produtos
+
+Com a aplicação em execução, a documentação completa da API pode ser acessada através do Swagger:
 
 ```text
 http://localhost:5119/swagger
 ```
 
-O banco MySQL ficará exposto localmente em:
+O Swagger permite visualizar os endpoints disponíveis, os modelos utilizados e testar as requisições diretamente pelo navegador.
+
+---
+
+## 📁 Estrutura do projeto
 
 ```text
-localhost:3307
+gerenciamento-petshop/
+│
+├── app-front/
+│   ├── public/
+│   ├── src/
+│   ├── .env.example
+│   ├── package.json
+│   └── README.md
+│
+├── backend/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Migrations/
+│   ├── Dockerfile
+│   └── PetShopManagement.Api.csproj
+│
+├── docs/
+│   ├── screenshots/
+│   │   └── tela-principal.png
+│   │
+│   └── demo/
+│       └── gerenciamento-petshop.gif
+│
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+└── README.md
 ```
 
-> Dentro do Docker, a API acessa o banco pelo serviço `db` na porta interna `3306`.
+---
 
-## Executando o backend sem Docker
+# 🚀 Como executar o projeto
 
-Para rodar o backend localmente, mantenha apenas o banco MySQL rodando pelo Docker:
+A forma recomendada de executar o backend e o banco de dados é utilizando **Docker Compose**.
+
+O frontend React é iniciado separadamente através do Node.js.
+
+## Pré-requisitos
+
+Antes de começar, tenha instalado:
+
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)
+- Docker Compose
+- [Node.js](https://nodejs.org/)
+- npm
+
+---
+
+## 1. Clone o repositório
 
 ```bash
-docker compose up -d db
+git clone https://github.com/GabrielDittrich/gerenciamento-petshop.git
 ```
 
-Depois acesse a pasta do backend:
+Entre na pasta do projeto:
+
+```bash
+cd gerenciamento-petshop
+```
+
+---
+
+## 2. Configure as variáveis de ambiente
+
+Na raiz do projeto existe o arquivo:
+
+```text
+.env.example
+```
+
+Crie um arquivo `.env` a partir dele.
+
+### Linux / macOS
+
+```bash
+cp .env.example .env
+```
+
+### Windows
+
+```bash
+copy .env.example .env
+```
+
+O arquivo possui as configurações utilizadas pelo MySQL:
+
+```env
+MYSQL_ROOT_PASSWORD=sua_senha_root
+MYSQL_DATABASE=petshopdb
+MYSQL_USER=petshop
+MYSQL_PASSWORD=sua_senha_usuario
+```
+
+As senhas podem ser alteradas antes da inicialização dos containers.
+
+> Os arquivos `.env` armazenam configurações locais e não devem ser versionados. O `.env.example` serve como modelo para configuração do ambiente.
+
+---
+
+## 3. Inicie o banco de dados e a API
+
+Na raiz do projeto, execute:
+
+```bash
+docker compose up --build
+```
+
+O Docker Compose irá:
+
+1. Baixar a imagem do MySQL, caso ainda não esteja disponível
+2. Criar e iniciar o banco de dados
+3. Executar o healthcheck do MySQL
+4. Compilar a API ASP.NET Core
+5. Inicializar o backend após o banco estar disponível
+
+Após a inicialização:
+
+| Serviço | Endereço |
+|---|---|
+| API | http://localhost:5119 |
+| Swagger | http://localhost:5119/swagger |
+| MySQL | localhost:3307 |
+
+Dentro da rede Docker, a API acessa o banco através de:
+
+```text
+db:3306
+```
+
+---
+
+## 4. Configure o frontend
+
+Abra outro terminal e acesse:
+
+```bash
+cd app-front
+```
+
+O frontend possui seu próprio arquivo:
+
+```text
+.env.example
+```
+
+Crie o `.env`.
+
+### Linux / macOS
+
+```bash
+cp .env.example .env
+```
+
+### Windows
+
+```bash
+copy .env.example .env
+```
+
+A configuração padrão é:
+
+```env
+REACT_APP_API_URL=http://localhost:5119
+```
+
+Essa variável define o endereço utilizado pelo React para se comunicar com a API.
+
+---
+
+## 5. Instale as dependências
+
+Dentro de `app-front`, execute:
+
+```bash
+npm install
+```
+
+---
+
+## 6. Inicie o frontend
+
+```bash
+npm start
+```
+
+A aplicação estará disponível em:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## ✅ Aplicação em execução
+
+Com todos os serviços iniciados:
+
+| Aplicação | Endereço |
+|---|---|
+| Frontend React | http://localhost:3000 |
+| Backend ASP.NET Core | http://localhost:5119 |
+| Swagger | http://localhost:5119/swagger |
+| MySQL | localhost:3307 |
+
+---
+
+## 🛑 Encerrando os containers
+
+Para interromper o backend e o banco:
+
+```bash
+docker compose down
+```
+
+Os dados do MySQL permanecem armazenados no volume Docker.
+
+Ao executar novamente:
+
+```bash
+docker compose up
+```
+
+os dados cadastrados anteriormente continuarão disponíveis.
+
+### Remover também os dados
+
+Para remover os containers e o volume do banco:
+
+```bash
+docker compose down -v
+```
+
+> ⚠️ O parâmetro `-v` remove o volume do MySQL e apaga os dados armazenados nele.
+
+---
+
+## ⚙️ Executando o backend sem Docker
+
+Também é possível executar a API diretamente utilizando o .NET SDK.
+
+### Pré-requisitos
+
+- .NET 8 SDK
+- MySQL
+- Banco configurado
+- String de conexão válida
+
+Entre na pasta:
 
 ```bash
 cd backend
-```
-
-Crie o arquivo de configuração de ambiente:
-
-```bash
-cp .env.example conexao.env
-```
-
-No Windows:
-
-```bash
-copy .env.example conexao.env
-```
-
-Configure a string de conexão no arquivo `conexao.env`:
-
-```env
-DB_CONNECTION=server=localhost;port=3307;database=petshopdb;user=root;password=sua_senha
 ```
 
 Restaure as dependências:
@@ -161,87 +383,74 @@ Restaure as dependências:
 dotnet restore
 ```
 
-Aplique as migrations:
-
-```bash
-dotnet ef database update
-```
-
-Execute a API:
+Execute:
 
 ```bash
 dotnet run
 ```
 
-A documentação da API ficará disponível no Swagger:
+Nesse modo, é necessário garantir que a configuração de conexão com o MySQL esteja adequada ao ambiente local.
 
-```text
-http://localhost:5119/swagger
-```
+---
 
-> A porta pode variar conforme a configuração local do projeto.
+## 🐳 Ambiente Docker
 
-## Executando o frontend
+O ambiente utiliza **MySQL 8.4** com persistência através de volume Docker.
 
-Acesse a pasta do frontend:
+O banco possui um **healthcheck**, utilizado pelo Docker Compose para verificar quando o MySQL está pronto para receber conexões.
 
-```bash
-cd app-front
-```
+A API ASP.NET Core só é iniciada depois que o banco estiver disponível, evitando tentativas de conexão enquanto o MySQL ainda está sendo inicializado.
 
-Crie o arquivo de ambiente:
+---
 
-```bash
-cp .env.example .env
-```
+## 📱 Responsividade
 
-No Windows:
+A interface foi desenvolvida para se adaptar a diferentes tamanhos de tela.
 
-```bash
-copy .env.example .env
-```
+O sistema pode ser utilizado em:
 
-Instale as dependências:
+- Desktop
+- Notebook
+- Tablet
+- Smartphone
 
-```bash
-npm install
-```
+---
 
-Execute o frontend:
+## 💡 Conceitos aplicados
 
-```bash
-npm start
-```
+Durante o desenvolvimento do projeto foram aplicados conceitos como:
 
-Por padrão, o frontend será iniciado em:
+- Desenvolvimento de APIs REST
+- ASP.NET Core
+- Entity Framework Core
+- Persistência de dados
+- Migrations
+- Integração com MySQL
+- Integração entre frontend e backend
+- Requisições HTTP
+- Configuração de CORS
+- Variáveis de ambiente
+- Docker e Docker Compose
+- Persistência com volumes Docker
+- Healthcheck de containers
+- Swagger / OpenAPI
+- Interfaces responsivas
+- Git e GitHub
 
-```text
-http://localhost:3000
-```
+---
 
-## Testando a API
+## 📌 Status do projeto
 
-Além do Swagger, o projeto possui um arquivo `Request.http` com exemplos de requisições para testar os endpoints da API diretamente pelo VS Code.
+✅ **Funcional**
 
-```text
-backend/Request.http
-```
+O projeto possui integração entre **frontend, backend e banco de dados** e pode ser executado localmente utilizando Docker.
 
-Esse arquivo pode ser usado com a extensão **REST Client**.
+---
 
-Com a API em execução, basta abrir o arquivo `Request.http` e enviar as requisições pelo próprio VS Code.
+## 👨‍💻 Autor
 
-## Dados de demonstração
+**Gabriel Dittrich**
 
-Ao iniciar a API, o sistema cria automaticamente alguns dados iniciais para facilitar testes e apresentação do projeto.
+Desenvolvedor de Software em início de carreira com foco em **C#, .NET, ASP.NET Core, SQL, APIs REST e React**.
 
-Os dados incluem exemplos de pessoas/clientes, animais e produtos, permitindo visualizar a área operacional preenchida logo após executar o sistema.
-
-## Documentação por pasta
-
-O projeto também possui READMEs específicos para cada parte da aplicação:
-
-```text
-backend/README.md
-app-front/README.md
-```
+[LinkedIn](https://www.linkedin.com/in/gabriel-dittrich/) • [GitHub](https://github.com/GabrielDittrich)
